@@ -6,5 +6,25 @@ for c,e in dictionary.items():
     print(e)
 
 print("Please translate");
-zi = input("你阿訇: ")
-print("You entered " + zi)
+#zi = input("你阿訇: ")
+#print("You entered " + zi)
+
+file = open("test.txt", encoding='utf-8')
+
+dict = {}
+
+for line in file:
+    entry = line.split('-')
+    assert(len(entry) == 2)
+    key = entry[0]
+    defn = entry[1]
+
+    dict[key] = defn.lstrip()
+
+for phrase, defn in dict.items():
+    print("'" + defn + "'")
+    attempt = input(phrase + ': ')
+    if attempt.lower() == defn.lower():
+        print ("Correct!")
+    else:
+        print ("Wrong!");
