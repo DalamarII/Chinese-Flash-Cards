@@ -19,12 +19,11 @@ for line in file:
     key = entry[0]
     defn = entry[1]
 
-    dict[key] = defn.lstrip()
+    dict[key] = defn.strip()
 
 for phrase, defn in dict.items():
-    print("'" + defn + "'")
     attempt = input(phrase + ': ')
     if attempt.lower() == defn.lower():
         print ("Correct!")
     else:
-        print ("Wrong!");
+        print ("Wrong!" + "\t'" + defn + "'");
