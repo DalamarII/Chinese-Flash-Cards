@@ -27,7 +27,19 @@ for phrase, defn in dict.items():
         break
     attempt = input(str(i) + ')' + phrase + ': ')
     i = i+1
-    if attempt.lower() == defn.lower():
-        print ("\tCorrect!")
+
+    defnList = defn.split('/')
+
+    numDefn = len(defnList)
+    numCorrect = 0
+
+    for d in defnList:
+        if attempt.lower() == d.lower():
+            numCorrect = numCorrect + 1
+
+    if numCorrect > 0:
+        print("\tCorrect!")
+        if numCorrect < numDefn:
+            print ("\tAlso means '" + defn + "'")
     else:
         print ("\tWrong!" + "\t'" + defn + "'");
