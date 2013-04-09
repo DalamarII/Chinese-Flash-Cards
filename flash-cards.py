@@ -9,7 +9,7 @@ print("Please translate");
 #zi = input("你阿訇: ")
 #print("You entered " + zi)
 
-file = open("test.txt", encoding='utf-8')
+file = open("definitions.txt", encoding='utf-8')
 
 dict = {}
 
@@ -21,9 +21,13 @@ for line in file:
 
     dict[key] = defn.strip()
 
+i = 1
 for phrase, defn in dict.items():
-    attempt = input(phrase + ': ')
+    if (i > 20):
+        break
+    attempt = input(str(i) + ')' + phrase + ': ')
+    i = i+1
     if attempt.lower() == defn.lower():
-        print ("Correct!")
+        print ("\tCorrect!")
     else:
-        print ("Wrong!" + "\t'" + defn + "'");
+        print ("\tWrong!" + "\t'" + defn + "'");
