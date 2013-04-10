@@ -9,6 +9,14 @@ print("Please translate");
 #zi = input("你阿訇: ")
 #print("You entered " + zi)
 
+# some sort of enum magic found here:
+# http://stackoverflow.com/questions/36932/how-can-i-represent-an-enum-in-python
+def enum(*sequential, **named):
+    enums = dict(zip(sequential, range(len(sequential))), **named)
+    return type('Enum', (), enums)
+
+PhraseType = enum('Noun', 'Verb', 'Adjective')
+
 file = open("definitions.txt", encoding='utf-8')
 
 dict = {}
@@ -28,10 +36,15 @@ for phrase, defn in dict.items():
     attempt = input(str(i) + ')' + phrase + ': ')
     i = i+1
 
+    # TODO: Not 100% sure but I think for loops go in order in lists
+    # This means we can rely on this sequential parsing of the loop
+    # to check for the presence or absence of phrase types
     defnList = defn.split('/')
 
     numDefn = len(defnList)
     numCorrect = 0
+
+    # Sort word type
 
     for d in defnList:
         if attempt.lower() == d.lower():
